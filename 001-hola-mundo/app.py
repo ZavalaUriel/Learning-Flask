@@ -4,6 +4,9 @@ from flask_bootstrap import Bootstrap5
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 
+'''
+    podemos retornar HTML directamente desde una ruta de Flask
+'''
 def responsehtml():
     return '''
     <!DOCTYPE html>
@@ -19,6 +22,26 @@ def responsehtml():
     </body>
     </html>
     '''
+
+'''
+    ruta que retorna HTML directamente con un saludo personalizado
+'''
+@app.route('/hola/<name>')
+def bienvenido(name):
+    return '''
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bienvenido</title>
+    </head>
+    <body>
+        <h1>¡Bienvenido, {}!</h1>
+        <p>Nos alegra tenerte aquí.</p>
+    </body>
+    </html>
+    '''.format(name)
 
 @app.route('/')
 def home():
